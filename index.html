@@ -19,6 +19,7 @@
             color: #006400;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
         h1 {
             font-size: 48px;
@@ -50,6 +51,25 @@
         nav ul li a:hover {
             background-color: #555;
         }
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .btn-auth {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: #006400;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-auth:hover {
+            background-color: #004b23;
+        }
         .container {
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.8);
@@ -75,32 +95,31 @@
             margin: 5px 0;
             color: #333;
         }
-        form {
-            margin-top: 30px;
-        }
-        form label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        form input, form textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        form input[type="submit"] {
-            background-color: #333;
-            color: #fff;
-            cursor: pointer;
+        .news-item .btn-ver-mais {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #006400;
+            color: white;
             border: none;
-            border: 2px solid #006400;
+            border-radius: 4px;
+            text-decoration: none;
         }
-        form input[type="submit"]:hover {
-            background-color: #555;
+        .news-item .btn-ver-mais:hover {
+            background-color: #004b23;
         }
-        .error {
-            color: red;
+        .news-item .fonte-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            color: #ffffff;
+            background-color: #006400;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .news-item .fonte-link:hover {
+            background-color: #004b23;
         }
         footer {
             text-align: center;
@@ -109,15 +128,93 @@
             color: #fff;
             margin-top: 20px;
         }
+
+        /* Adaptações para dispositivos móveis */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+            .auth-buttons {
+                position: relative;
+                text-align: center;
+                margin-top: 10px;
+            }
+            .btn-auth {
+                display: block;
+                margin: 5px auto;
+                width: 80%;
+            }
+            nav ul {
+                text-align: center;
+            }
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+            nav ul li a {
+                display: block;
+                width: 80%;
+                margin: 0 auto;
+            }
+            .container {
+                padding: 10px;
+                max-width: 90%;
+            }
+            .news-item {
+                padding: 10px;
+            }
+            .news-item h3 {
+                font-size: 18px;
+            }
+            .news-item p {
+                font-size: 14px;
+            }
+            .news-item .btn-ver-mais, .news-item .fonte-link {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+
+        /* Estilos para telas maiores que 1024px */
+        @media (min-width: 1024px) {
+            h1 {
+                font-size: 56px;
+            }
+            h2 {
+                font-size: 28px;
+            }
+            .container {
+                max-width: 1000px;
+            }
+            .news-item h3 {
+                font-size: 24px;
+            }
+            .news-item p {
+                font-size: 16px;
+            }
+            .news-item .btn-ver-mais, .news-item .fonte-link {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Informa Esportes</h1>
         <h2>As últimas notícias sobre esportes</h2>
+        
+        <div class="auth-buttons">
+            <button class="btn-auth" onclick="window.location.href='login.html'">Login</button>
+            <button class="btn-auth" onclick="window.location.href='registro.html'">Registrar-se</button>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="#">Principais notícias</a></li>
+                <li><a href="noticias.html">Adicionar Notícia</a></li> <!-- Atualizado para a nova página -->
             </ul>
         </nav>
     </header>
@@ -127,55 +224,46 @@
             <h2>Bem-vindo ao Informa Esportes!</h2>
             <p>Fique por dentro das últimas notícias.</p>
         </section>
+        
         <section id="news" class="news-list">
             <h2>Notícias Recentes</h2>
-            <div class="news-item">
-                <h3>Vini Jr. e o racismo no futebol</h3>
-                <p>À CNN, Vini Jr. revela que o Real Madrid cogita deixar o campo em caso de racismo...</p>
-            </div>
-            <div class="news-item">
-                <h3>Desafio testado na Copa do Mundo Feminina Sub-20</h3>
-                <p>Alternativa econômica ao VAR, “desafio” é testado na Copa do Mundo Feminina Sub-20...</p>
+            <div id="noticiasContainer">
+                <div class="news-item">
+                    <h3>Vini Jr. e o racismo no futebol</h3>
+                    <p>À CNN, Vini Jr. revela que o Real Madrid cogita deixar o campo em caso de racismo...</p>
+                    <a href="https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/futebol-espanhol/a-cnn-vini-jr-revela-que-real-madrid-cogita-deixar-campo-em-caso-de-racismo/#:~:text=Porque%2C%20se%20as%20coisas%20n%C3%A3o,o%20atacante%20do%20Real%20Madrid." target="_blank" class="fonte-link">Ver Fonte</a>
+                    <a href="#" class="btn-ver-mais">Ver mais</a>
+                </div>
+                <div class="news-item">
+                    <h3>Desafio testado na Copa do Mundo Feminina Sub-20</h3>
+                    <p>Alternativa econômica ao VAR, “desafio” é testado na Copa do Mundo Feminina Sub-20...</p>
+                    <a href="https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/alternativa-economica-ao-var-desafio-e-testado-na-copa-do-mundo-feminina-sub-20/#:~:text=eSports-,Alternativa%20econ%C3%B4mica%20ao%20VAR%2C%20%E2%80%9Cdesafio%E2%80%9D%20%C3%A9%20testado%20na%20Copa,do%20Mundo%20Feminina%20Sub%2D20&text=O%20Football%20Video%20Support%20Assistant,(V%2DA)%20na%20Copa%20do%20Mundo." target="_blank" class="fonte-link">Ver Fonte</a>
+                    <a href="#" class="btn-ver-mais">Ver mais</a>
+                </div>
             </div>
         </section>
-        
-        <!-- Formulário para adicionar notícias -->
-        <form id="formNoticia" action="https://formspree.io/f/xrbzdkkz" method="post">
-            <h1>Adicionar Notícia</h1>
-            <p>Preencha os campos abaixo para enviar uma nova notícia ao site.</p>
-            
-            <label for="titulo">*Título da Notícia:</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Digite o título da notícia" required>
-            
-            <label for="conteudo">*Conteúdo da Notícia:</label>
-            <textarea id="conteudo" name="conteudo" placeholder="Escreva o conteúdo da notícia aqui" required></textarea>
-            
-            <label for="categoria">Categoria (Opcional):</label>
-            <input type="text" id="categoria" name="categoria" placeholder="Ex: Futebol, Basquete">
-            
-            <input type="hidden" name="_next" value="https://<seu-username>.github.io/<seu-repositorio>/success.html">
-            <input type="submit" value="Enviar Notícia">
-            <p id="feedback" class="error"></p>
-        </form>
-
-        <script>
-            document.getElementById('formNoticia').addEventListener('submit', function(event) {
-                var titulo = document.getElementById('titulo').value.trim();
-                var conteudo = document.getElementById('conteudo').value.trim();
-                var feedback = document.getElementById('feedback');
-
-                if (!titulo || !conteudo) {
-                    feedback.textContent = "O título e o conteúdo da notícia são obrigatórios.";
-                    event.preventDefault(); 
-                } else {
-                    feedback.textContent = "";
-                }
-            });
-        </script>
     </div>
-    
+
     <footer>
-        &copy; 2024 Informa Esportes
+        <p>&copy; 2024 Informa Esportes. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const noticias = JSON.parse(localStorage.getItem('noticias')) || [];
+            const noticiasContainer = document.getElementById('noticiasContainer');
+
+            noticias.forEach(noticia => {
+                const noticiaDiv = document.createElement('div');
+                noticiaDiv.classList.add('news-item');
+                noticiaDiv.innerHTML = `
+                    <h3>${noticia.titulo}</h3>
+                    <p>${noticia.conteudo}</p>
+                    <a href="#" class="btn-ver-mais">Ver mais</a>
+                `;
+                noticiasContainer.appendChild(noticiaDiv);
+            });
+        });
+    </script>
 </body>
 </html>
